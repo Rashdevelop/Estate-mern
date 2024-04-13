@@ -1,8 +1,11 @@
 import express from "express"
 import mongoose from "mongoose"
 import dotenv from "dotenv";
-import  router from "./routes/UserRoute.js";
+import  userRouter from "./routes/UserRoute.js";
+import  authRouter from "./routes/AuthUserRoute.js";
+import { errorHandler } from "./middleware/ErrorHandlers.js";
 dotenv.config();
+
 
 mongoose.connect(process.env.DB_URL).then(()=>{
     console.log("connected");
@@ -10,8 +13,10 @@ mongoose.connect(process.env.DB_URL).then(()=>{
     console.log(e);
 })
 const app=express();
-
-app.listen(3000,()=>{
+app.use(express.json())
+app.listen(5000,()=>{
     console.log("running");
 })
-app.use('api/user/',router);
+app.use('api/user',userRouter);
+app.use('/api/auth',authRouter);
+app.use(errorHandler);
