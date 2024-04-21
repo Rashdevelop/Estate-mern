@@ -12,7 +12,7 @@ const Header = () => {
       <div className='flex justify-between w-3/12 text-slate-800 '>
       <Link to="/"  className='hover:underline'>Home</Link>
       <Link to="/about" className='hover:underline'>About</Link>
-      <Link to="/signIn" className='hover:underline' >Sign In </Link>
+      <Link to="/signup" className='hover:underline' >Sign Up </Link>
       </div>
       
     </div>
