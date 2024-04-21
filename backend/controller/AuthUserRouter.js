@@ -15,11 +15,12 @@ export const signUp=async(req,res,next)=>{
       res.status(200).json({
          success:true,
          message:"User Created Successfully.",
+        
       });
    }catch(error){
      res.status(404).json({
       success:false,
-      message:err.message,
+      message:error.message,
      })
    }
 }
@@ -46,7 +47,10 @@ export const signIn=async(req,res,next)=>{
          res.cookie('token',token,{
             httpOnly:true,
             expires: new Date(Date.now()+24*60*60*1000)
-         }).status(200).json(isemail);
+         }).status(200).send({
+            success:true,
+            isemail,
+         });
       }catch(err){
           res.status(500).send({
             message:"Internal Server Error",

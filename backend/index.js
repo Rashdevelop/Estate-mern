@@ -13,8 +13,8 @@ mongoose.connect(process.env.DB_URL).then(()=>{
 })
 const app=express();
 app.use(express.json())
-app.listen(3000,()=>{
-    console.log("running");
+app.listen(process.env.SERVER_PORT,()=>{
+    console.log("running at "+process.env.SERVER_PORT);
 })
 app.use('api/user',userRouter);
 app.use('/api/auth',authRouter);
